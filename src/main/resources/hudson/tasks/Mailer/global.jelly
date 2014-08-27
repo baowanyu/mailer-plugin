@@ -31,6 +31,9 @@ THE SOFTWARE.
     <f:entry title="${%Default user e-mail suffix}" field="defaultSuffix">
       <f:textbox />
     </f:entry>
+    <f:entry title="${%Block Nondefault Suffix}" field="blockNondefaultSuffix">
+      <f:checkbox />
+    </f:entry>
     <f:advanced>
       <f:optionalBlock name="useSMTPAuth" title="${%Use SMTP Authentication}" checked="${descriptor.smtpAuthUserName!=null}"
           help="${descriptor.getHelpFile('smtpAuth')}">

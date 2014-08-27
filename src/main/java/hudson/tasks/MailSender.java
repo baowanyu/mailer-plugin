@@ -361,6 +361,7 @@ public class MailSender {
 
         Set<InternetAddress> rcp = new LinkedHashSet<InternetAddress>();
         String defaultSuffix = Mailer.descriptor().getDefaultSuffix();
+        boolean blockNondefaultSuffix = Mailer.descriptor().getBlockNondefaultSuffix();
         StringTokenizer tokens = new StringTokenizer(recipients);
         while (tokens.hasMoreTokens()) {
             String address = tokens.nextToken();
@@ -380,7 +381,14 @@ public class MailSender {
             	if (!address.contains("@") && defaultSuffix != null && defaultSuffix.contains("@")) {
             		address += defaultSuffix;
             	}
-            	
+                
+                // If block nondefault suffix and address is NOT ending with 
+                // default suffix
+                if (blockNondefaultSuffix && !address.endsWith(defaultSuffix))
+                {
+                    continue;
+                }
+                
                 try {
                     rcp.add(Mailer.StringToAddress(address, charset));
                 } catch (AddressException e) {

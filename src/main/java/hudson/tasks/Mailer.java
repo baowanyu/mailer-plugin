@@ -204,6 +204,13 @@ public class Mailer extends Notifier implements SimpleBuildStep {
          * to send e-mails. Null if not configured.
          */
         private String defaultSuffix;
+        
+        /**
+         * Whether block sending e-mail to the nondefault e-mail address suffix .
+         * False if not block.
+         * True if block.
+         */
+        private boolean blockNondefaultSuffix;
 
         /**
          * Hudson's own URL, to put into the e-mail.
@@ -278,6 +285,10 @@ public class Mailer extends Notifier implements SimpleBuildStep {
 
         public String getDefaultSuffix() {
             return defaultSuffix;
+        }
+        
+        public boolean getBlockNondefaultSuffix() {
+            return blockNondefaultSuffix;
         }
 
         public String getReplyToAddress() {
