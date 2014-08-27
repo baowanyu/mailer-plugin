@@ -357,6 +357,7 @@ public class Mailer extends Notifier implements SimpleBuildStep {
             setReplyToAddress(json.getString("replyToAddress"));
 
             defaultSuffix = nullify(json.getString("defaultSuffix"));
+            blockNondefaultSuffix = json.getBoolean("blockNondefaultSuffix");
 
             if(json.has("useSMTPAuth")) {
                 JSONObject auth = json.getJSONObject("useSMTPAuth");
@@ -430,6 +431,10 @@ public class Mailer extends Notifier implements SimpleBuildStep {
 
         public void setDefaultSuffix(String defaultSuffix) {
             this.defaultSuffix = defaultSuffix;
+        }
+
+        public void setBlockNondefaultSuffix(boolean blockNondefaultSuffix) {
+            this.blockNondefaultSuffix = blockNondefaultSuffix;
         }
 
         /**
